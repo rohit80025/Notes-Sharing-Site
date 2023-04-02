@@ -1,0 +1,73 @@
+{% extends 'user_navigation.html' %}
+{% block body %}
+{% load static %}
+
+
+{% if error == "no" %}
+<script>
+        alert('notes uploaded  Successfully');
+        window.location=('{% url 'view_mynotes' %}');
+
+</script>
+{% elif error == "yes" %}
+<script>
+        alert('Some thing went Wrong, Try again');
+
+</script>
+{% endif %}
+
+
+<div class="container my-5">
+    <h2 class="text-center">UPLOAD NOTES </h2>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label>Branch</label>
+
+                <select class="form-control" name="branch">
+                    <option value="">--Select Branch--</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Electronic and communication Engineering">Electronic and communication Engineering
+                    </option>
+                </select>
+
+                <label>Subject</label>
+                <input type="text" class="form-control" placeholder="Enter Subject Name" name="subject">
+
+                <label>Notes File</label>
+                <input type="file" class="form-control" name="notesfile">
+
+                <label>File Type</label>
+                <select class="form-control" name="filetype">
+                    <option value="">--Select Branch--</option>
+                    <option value="PDX">PDF</option>
+                    <option value="PPT">PPT</option>
+                    <option value="DOC/DOCX">DOC/DOCX</option>
+                    <option value="TXT">TXT</option>
+                    <option value="Image">Image</option>
+                    <option value="ZIP/RAR">ZIP/RAR</option>
+                </select>
+
+                <label>Descriptions</label>
+
+                <textarea class="form-control" name="description"></textarea>
+
+
+                <input type="Submit" class="btn btn-danger mt-2" name="" value="Submit">
+            </form>
+        </div>
+
+        <div class="col-sm-6">
+            <img src="{% static 'images/upload_notes.jpg' %}" style=" max-width: 100%;height: auto;">
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

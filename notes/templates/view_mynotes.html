@@ -1,0 +1,56 @@
+{% extends 'user_navigation.html'%}
+{% block body %}
+{% load static %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable();
+});
+</script>
+
+
+
+<div class="container my-5">
+    <h2 class="text-center"> VIEW MY NOTES </h2>
+    <hr>
+    <table class="table table=bordered " id="example">
+        <thead>
+        <tr>
+            <th> Sr.no</th>
+            <th> Uploading Date</th>
+            <th> Branch</th>
+            <th> Subject</th>
+            <th> Download Notes</th>
+            <th> File type</th>
+            <th> description</th>
+            <th> Status</th>
+            <th> Action</th>
+        </tr>
+
+        {% for i in notes %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.uploadingdate }}</td>
+            <td>{{i.branch }}</td>
+            <td>{{i.subject }}</td>
+            <td class="text-center"><a href= "{{i.notesfile.url }}" class="fa-solid fa-download"  ></a></td>
+            <td>{{i.filetype }}</td>
+            <td>{{i.description }}</td>
+            <td>{{i.status}}</td>
+            <td class="text-center"><a href="{% url 'delete_mynotes' i.id %}" class="fa-sharp fa-solid fa-trash" onclick="return confirm('Are you sure,You want to Delete')"></a></td>
+
+
+        </tr>
+        {%endfor%}
+
+        </thead>
+    </table>
+</div>
+{% endblock %}

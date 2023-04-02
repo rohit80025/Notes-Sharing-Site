@@ -1,0 +1,73 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+
+{% if error == "no" %}
+    <script>
+        alert('Singup  Successfull');
+        window.location="{% url 'user_login'%}"
+    </script>
+{% elif error == "yes" %}
+    <script>
+        alert('Some thing went Wrong, Try again');
+    </script>
+{% endif %}
+
+
+<div class ="container my-5">
+	<div class="row">
+		<div class= "col-sm-6">
+			<h2 class="text-center">Existing Costomers</h2>
+			<hr>
+			<p>By creating an account with website , u will be able to move througt the notes upload 
+			and downloading process and more.... </p>
+			  <center><a href="{% url 'user_login'%}" class="btn btn-danger text-white mt -5"> CREATE AN ACCOUNT</a></center>
+		</div>
+
+		<div class= "col-sm-6">
+			<h2 class="text-center">REGISTER WITH US</h2>
+			<hr>
+			<p> If you not account with us, Please Signup..</p>
+			 <form method="post">
+			 	{% csrf_token %}
+
+			 	<label>First Name</label>
+			 	<input type="text" class="form-control" placeholder=" Enter Your First Name" name="fastname">
+			 	
+			 	<label>Last Name</label>
+			 	<input type="text" class="form-control" placeholder="Enter Your Last Name" name="lastname">
+
+			 	<label>Contact</label>
+			 	<input type="text" class="form-control" placeholder="Enter Your Contact Number" name="contacatnumber">
+
+			 	<label>Email ID</label>
+			 	<input type="email" class="form-control" placeholder="Enter Your email ID" name="emailID">
+
+			 	<label>Password</label>
+			 	<input type="Password" class="form-control" placeholder="Enter Your Password " name="password">
+
+			 	<label>Branch</label>
+			 	<select class="form-control" name="branch">
+			 		<option value="Computer Science">Computer Science</option>
+			 		<option value="Mechanical Engineering">Mechanical Engineering</option>
+			 		<option value="Electrical Engineering">Electrical Engineering</option>
+			 		<option value="Civel Engineering">Civel Engineering</option>
+			 		<option value="Electronic and communaction Engineering">Electronic and communaction Engineering</option>
+			 	</select>
+
+			 	<label>Are You?</label>
+			 	<select class="form-control" name="role">
+			 		<option value="Student">Student</option>
+			 		<option value="Teacher">Teacher</option>
+			 	</select>
+
+			 	<input type="Submit" class="btn btn-danger mt-2" name="" value="Submit">
+			 </form>
+		</div>
+
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<style>
+    .img {
+        background-image: url("{% static 'images/a.jpeg' %}");
+        width : 100%;
+        height : 470px;
+
+    }
+</style>
+
+
+<div class="img">
+    <div class="transparentbox">
+        <p> Study notes sharing Site</p>
+    </div>
+</div>
+
+{% endblock %}
